@@ -1,32 +1,59 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
         Cadastro de usuário
-   
+
         <h:form>
             <div>
-                <h:inputText value="#{userBean.user.id}"></h:inputText>
+                <h:outputLabel value="ID"/><h:inputText value="#{usuarioBean.user.id}" readonly="true"></h:inputText>
             </div>
             <div>
-                <h:inputText value="#{userBean.user.email}"></h:inputText>
+                <h:outputLabel value="Email"/><h:inputText value="#{usuarioBean.user.email}"></h:inputText>
             </div>
             <div>
-                <h:inputText value="#{userBean.user.password}"></h:inputText>
+                <h:outputLabel value="Senha"/><h:inputText value="#{usuarioBean.user.senha}"></h:inputText>
             </div>
             <div>
-                <h:inputText value="#{userBean.user.name}"></h:inputText>
+                <h:outputLabel value="Nome"/><h:inputText value="#{usuarioBean.user.nome}"></h:inputText>
             </div>
-            
+
             <div>
-                <h:commandButton value="Cadastrar" action="#{userBean.create()}"></h:commandButton>
+                <h:commandButton value="#{usuarioBean.acao}" action="#{usuarioBean.processar()}"></h:commandButton>
             </div>
+
         </h:form>
-    
+        <h:form>
+            <h:dataTable value="#{usuarioBean.listarUsuarios()}" var="_usuario">
+                <h:column >
+                    <f:facet name="header"><h:outputText value="ID"/></f:facet>
+                    <h:outputText value="#{_usuario.id}"/>
+                </h:column>
+                <h:column >
+                    <f:facet name="header"><h:outputText value="Nome"/></f:facet>
+                    <h:outputText value="#{_usuario.nome}"/>
+                </h:column>
+                <h:column >
+                    <f:facet name="header"><h:outputText value="Email"/></f:facet>
+                    <h:outputText value="#{_usuario.email}"/>
+                </h:column>
+                <h:column >
+                    <f:facet name="header"><h:outputText value="Opções"/></f:facet>
+                    <h:commandLink action="#{usuarioBean.entrarEditar(_usuario)}">
+                        <h:outputText value="Editar"/>
+                    </h:commandLink>
+                    <h:commandLink action="#{usuarioBean.remover(_usuario)}">
+                        <h:outputText value="Remover"/>
+                    </h:commandLink>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+
     </h:body>
 </html>
 
