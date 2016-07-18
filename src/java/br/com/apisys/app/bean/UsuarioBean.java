@@ -76,5 +76,4 @@ public class UsuarioBean {
     public String getAcao() {
         return acao;
     }
-    
 }

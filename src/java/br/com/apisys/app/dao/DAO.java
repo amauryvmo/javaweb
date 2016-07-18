@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.apisys.app.dao;
 
 import br.com.apisys.app.dao.util.HibernateUtil;
@@ -10,11 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-/**
- *
- * @author VICTOR
- */
-public class GenericDAO<T> {
+public class DAO<T> {
     private Class<T> classe;
 
     public void save(T t) {
